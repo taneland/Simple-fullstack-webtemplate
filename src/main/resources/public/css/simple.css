@@ -1,0 +1,7 @@
+
+.has-bg-img
+ {
+   background:  url('/header.jpg')
+   center center;
+   background-size:cover;
+  }
