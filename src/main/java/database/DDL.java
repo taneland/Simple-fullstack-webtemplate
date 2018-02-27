@@ -4,6 +4,7 @@ package database;
 import java.sql.*;
 import java.util.Properties;
 
+
 public class DDL {
 
     static final String ADMIN_TABLE = "admin";
@@ -17,6 +18,18 @@ public class DDL {
             + ADMIN_COLUMN_NAME + " TEXT NOT NULL,"
             + ADMIN_COLUMN_HASHED_PASSWORD + " TEXT NOT NULL);";
 
+
+    static final String BLOGPOST_TALBE = "blog_post";
+    static final String BLOGPOST_COLUMN_ID = "blog_post_id";
+    static final String BLOGPOST_COLUMN_TITLE = "blog_post_title";
+    static final String BLOGPOST_COLUMN_CONTENT = "blog_post_content";
+    static final String BLOGPOST_COLUMN_AUTHOR = "blog_post_author";
+    static final String CREATE_TABLE_BLOGPOST = "CREATE TABLE IF NOT EXISTS " + BLOGPOST_TALBE + "("
+            + BLOGPOST_COLUMN_ID + " INTEGER PRIMARY KEY,"
+            + BLOGPOST_COLUMN_TITLE + " TEXT NOT NULL,"
+            + BLOGPOST_COLUMN_CONTENT + " TEXT NOT NULL,"
+            + BLOGPOST_COLUMN_AUTHOR + " TEXT NOT NULL);";
+
     private String dbUrl;
     private Properties sqLiteConfig;
 
@@ -28,6 +41,7 @@ public class DDL {
         try (Connection connection = DriverManager.getConnection(dbUrl, sqLiteConfig)) {
             Statement statement = connection.createStatement();
             statement.executeUpdate(CREATE_TABLE_ADMIN);
+            statement.executeUpdate(CREATE_TABLE_BLOGPOST);
 
             if (!adminUserExists(connection)) {
                 createDefaultAdmin(connection);

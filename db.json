@@ -1,0 +1,11 @@
+{
+  "table":{
+    "admin":{
+      "id":"admin_id",
+      "email":"email",
+      "name":"name",
+      "hashed_password":"hashed_password"
+    }
+  }
+
+}

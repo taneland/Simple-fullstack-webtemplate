@@ -2,7 +2,8 @@ package role;
 
 public enum LoggedInRole {
 
-    ADMIN("Admin");
+    ADMIN("Admin"),
+    USER("User");
 
     private String roleName;
 

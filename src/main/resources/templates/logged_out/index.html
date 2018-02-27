@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
   <script src="\js\main.js"></script>
+    <script src="\js\vue.min.js"></script>
 </head>
 <body>
 
@@ -32,7 +33,7 @@
         <a href="#" class="navbar-item">
           Experiments
         </a>
-        <a href="#" class="navbar-item">
+        <a href="/blog" class="navbar-item">
           Blog
         </a>
         <a href="https://github.com/taneland"  class="navbar-item">
@@ -45,6 +46,14 @@
                        <i class="fab fa-linkedin"></i>
                      </span>
         </a>
+          <span class="navbar-item">
+                <a class="button " id="loginButton">
+                  <span class="icon">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                  </span>
+                  <span>Login</span>
+                </a>
+              </span>
 
       </div>
     </div>
@@ -193,25 +202,67 @@
           </span>
   </div>
 </div>
+<div class="modal" id="myModal">
+
+    <div class="modal-background" id="modalBg"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Login</p>
+            <button id="mySpan" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <form class="" action="/" method="post">
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input is-medium" type="text" name="username" placeholder="Username"
+                        >
+                        <span class="icon is-left">
+                  <i class="fa fa-envelope"></i>
+              </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <input class="input is-medium" type="password" name="password" placeholder="Password">
+                        <span class="icon is-left">
+                  <i class="fa fa-lock"></i>
+              </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <button type="submit" class="button is-large">
+                            Login
+                        </button>
+                    </p>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+
+        </footer>
+    </div>
+</div>
+
 
 <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
 
-    // Get all "navbar-burger" elements
+
     var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-    // Check if there are any navbar burgers
+
     if ($navbarBurgers.length > 0) {
 
-      // Add a click event on each of them
+
       $navbarBurgers.forEach(function ($el) {
         $el.addEventListener('click', function () {
 
-          // Get the target from the "data-target" attribute
+
           var target = $el.dataset.target;
           var $target = document.getElementById(target);
 
-          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+
           $el.classList.toggle('is-active');
           $target.classList.toggle('is-active');
 
@@ -221,9 +272,30 @@
 
     });
         </script>
-<script type="text/javascript">
+<script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("loginButton");
+        var span = document.getElementById("mySpan");
+        var bg = document.getElementById("modalBg");
 
-</script>
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+      modal.className = "modal is-active"
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.className = "modal"
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  bg.onclick = function(event) {
+
+          modal.className = "modal"
+
+  }
+  </script>
+
 
 </body>
 </html>

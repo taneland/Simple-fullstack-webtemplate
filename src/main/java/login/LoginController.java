@@ -12,8 +12,8 @@ import util.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-import static auth.authenticator.authenticateAdmin;
-import static util.RedirectUtil.redirectToRoleHome;
+import static auth.Authenticator.authenticateAdmin;
+import static auth.Authenticator.authenticateUser;
 import static util.ViewUtil.render;
 
 public class LoginController {
@@ -21,18 +21,6 @@ public class LoginController {
     public static String ATTR_ROLE = "role";
     public static String ATTR_NAME = "name";
 
-    public static Route serveLoginPage = (Request request, Response response) -> {
-        if (isLoggedIn(request)) {
-            redirectToRoleHome(request, response);
-            return null;
-        }
-
-        Map<String, Object> model = new HashMap<>();
-        model.put("page_title", "Title");
-        model.put("text_title", "Logga in");
-        model.put("email_input", "");
-        return render(model, Path.Template.LOGIN);
-    };
 
     public static Route handleLoginPost = (Request request, Response response) -> {
         String email = getQueryEmail(request);
@@ -41,13 +29,20 @@ public class LoginController {
             setLoginAttributes(request.session(), email, LoggedInRole.ADMIN);
             response.redirect(Path.Web.ADMIN_HOME);
             return null;
-        } else {
+            
+        }else if(authenticateUser(email, password)){
+            setLoginAttributes(request.session(), email, LoggedInRole.USER);
+            response.redirect(Path.Web.USER_HOME);
+            return null;
+
+        }
+        else {
             Map<String, Object> model = new HashMap<>();
             model.put("page_title", "Title");
             model.put("text_title", "Logga in");
             model.put("login_failed", true);
             model.put("email_input", email);
-            return render(model, Path.Template.LOGIN);
+            return render(model, Path.Template.INDEX);
         }
 
     };
@@ -77,7 +72,7 @@ public class LoginController {
     }
 
     private static String getQueryEmail(Request request) {
-        return request.queryParams("email");
+        return request.queryParams("username");
     }
 
     private static String getQueryPassword(Request request) {

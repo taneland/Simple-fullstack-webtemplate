@@ -10,11 +10,12 @@ public class Path {
         public static final String LOGOUT = "/logout/";
 
         public static final String ADMIN_HOME = "/admin/";
+        public static final String USER_HOME = "/admin/";
     }
     public static class Template {
         public static final String INDEX = "logged_out/index";
         public static final String CONTACT = "logged_out/contact";
-        public static final String LOGIN = "logged_out/login";
+
         public static final String ERROR = "logged_out/error";
         public static final String BLOG = "logged_out/blog";
 

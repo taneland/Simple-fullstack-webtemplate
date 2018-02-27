@@ -4,13 +4,14 @@ import database.Database;
 import database.DatabaseException;
 import database.DatabaseHandler;
 import role.Admin;
+import role.User;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 import static security.PasswordSecurity.validatePassword;
 
-public class authenticator {
+public class Authenticator {
 
     public static boolean authenticateAdmin(String email, String password) {
         Admin existingAdmin;
@@ -32,5 +33,27 @@ public class authenticator {
             return false;
         }
     }
+
+    public static boolean authenticateUser(String email, String password) {
+        User existingUser;
+        try {
+            Database db = DatabaseHandler.getDatabase();
+            existingUser = db.getSelector().getUser();
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+            return false;
+        }
+        if (!existingUser.getEmail().equals(email)) {
+            return false;
+        }
+
+        try {
+            return validatePassword(password.toCharArray(), existingUser.getHashedPassword());
+        } catch (InvalidKeySpecException |NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }

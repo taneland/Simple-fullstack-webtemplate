@@ -1,56 +1,200 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vue Test</title>
-
-  <link rel="stylesheet" href="\css\simple.css">
-    <link rel="stylesheet" href="\css\bulma_custom.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="\css\style.css">
+  <link rel="stylesheet" href="\css\bulma_custom.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+  <script src="\js\main.js"></script>
+    <script src="\js\jquery.min.js"></script>
+    <script src="\js\vue.min.js"></script>
 </head>
 
 
-<body >
-  <section class="hero is-info is-small">
-  <!-- Hero head: will stick at the top -->
-  <div class="hero-head">
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="\TempLogga.png" alt="Logo">
-          </a>
-          <span class="navbar-burger burger" data-target="navbarMenuHeroA">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenuHeroA" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item " href="/">
-              Home
-            </a>
-            <a class="navbar-item">
-              Blog
-            </a>
-            <a class="navbar-item">
-              Login
-            </a>
-            <span id="vue-git" class="navbar-item">
-              <a v-bind:href="website" class="button is-info is-inverted">
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span>
-                <span>Github</span>
-              </a>
-            </span>
-          </div>
-        </div>
+<nav class="navbar is-fixed-top" id="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="/" class="navbar-item">
+        <img  src="/res/templogo.png" alt="Logo">
+      </a>
+
+      <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+               <span></span>
+               <span></span>
+               <span></span>
+             </span>
+    </div>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+      <div class="navbar-end">
+        <a  href="/" class="navbar-item is-active">
+          Home
+        </a>
+        <a href="#" class="navbar-item">
+          Experiments
+        </a>
+        <a href="/blog" class="navbar-item">
+          Blog
+        </a>
+        <a href="https://github.com/taneland"  class="navbar-item">
+                   <span class="icon">
+                     <i class="fab fa-github"></i>
+                   </span>
+        </a>
+        <a href="https://www.linkedin.com/in/fredrik-t%C3%A5neland-19b05b150/" class="navbar-item">
+                     <span class="icon">
+                       <i class="fab fa-linkedin"></i>
+                     </span>
+        </a>
+        <span class="navbar-item">
+                <a class="button " id="loginButton">
+                  <span class="icon">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                  </span>
+                  <span>Login</span>
+                </a>
+              </span>
+
       </div>
-    </nav>
+    </div>
   </div>
+</nav>
+
+
+
+<hr>
+
+<section class="section" th:if="${not is_logged_in}" >
+    <div class="container">
+
+            <button class="button is-medium" id="addButton">Add a blog post</button>
+
+    </div>
+
 </section>
+
+    <div class="modal" id="myModal">
+
+        <div class="modal-background" id="modalBg"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add new blog post</p>
+                <button id="mySpan" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div id="add-blog" >
+                    <div class="box">
+
+                        <form action="/" method="post">
+                            <div class="field">
+                                <label class="label">Blog Title</label>
+                                <p class="control">
+                                    <input class="input is-medium" v-model.lazy="blog.title" type="text" required>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Blog Text</label>
+                                <p class="control has-icons-left">
+                                    <textarea v-model.lazy="blog.content" class="textarea" required></textarea>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    <strong>Authors:</strong>
+                                </label>
+                                <div class="select">
+                                    <select v-model="blog.author" required>
+                                        <option v-for="author in authors">{{author}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <button type="submit" class="button is-large">
+                                        Post
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
+
+                    </div>
+
+            <footer class="modal-card-foot">
+
+            </footer>
+        </div>
+            </section>
+        </div>
+    </div>
+
+
+
+<section class="section ">
+
+    <th:block th:each="blog_post : ${all_blog_posts}">
+    <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+    <article class="message" >
+        <div class="message-header">
+            <p class="is-pulled-left">[[${blog_post.title}]]</p>
+            By: [[${blog_post.author}]]
+
+        </div>
+        <div class="message-body ">
+            [[${blog_post.content}]]
+        </div>
+    </article>
+        </div>
+    </div>
+    </th:block>
+</section>
+
+
+<script>
+
+new Vue({
+el:'#add-blog',
+    data() {
+       return{
+            blog:{
+                 title:"",
+                 content:"",
+                 author:""
+            },
+            authors:['Fredrik', 'Author 2', 'Vue Author']
+       }
+    },
+    methods: {
+
+    }
+})
+
+</script>
+
+<script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("addButton");
+        var span = document.getElementById("mySpan");
+        var bg = document.getElementById("modalBg");
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+      modal.className = "modal is-active"
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.className = "modal"
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  bg.onclick = function(event) {
+          modal.className = "modal"
+
+  }
+  </script>
+
 </body>
 </html>

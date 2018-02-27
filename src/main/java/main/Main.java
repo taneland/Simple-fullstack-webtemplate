@@ -1,5 +1,6 @@
 package main;
 
+import admin.AdminController;
 import blog.BlogController;
 import contact.ContactController;
 import index.IndexController;
@@ -30,7 +31,9 @@ public class Main {
         get(Path.Web.HOME, IndexController.serveIndexPage);
         get(Path.Web.CONTACT, ContactController.serveContactPage);
         get(Path.Web.BLOG, BlogController.serveBlogPage);
-        get(Path.Web.LOGIN, LoginController.serveLoginPage);
+        post(Path.Web.HOME, LoginController.handleLoginPost);
+
+        get(Path.Web.ADMIN_HOME, AdminController.serveAdminHomePage);
 
         notFound(ViewUtil.notFound);
         internalServerError(ViewUtil.internalServerError);
