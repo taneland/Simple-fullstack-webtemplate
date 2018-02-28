@@ -31,9 +31,12 @@ public class Main {
         get(Path.Web.HOME, IndexController.serveIndexPage);
         get(Path.Web.CONTACT, ContactController.serveContactPage);
         get(Path.Web.BLOG, BlogController.serveBlogPage);
-        post(Path.Web.HOME, LoginController.handleLoginPost);
-
         get(Path.Web.ADMIN_HOME, AdminController.serveAdminHomePage);
+        get(Path.Web.ADMIN_BLOG, AdminController.serveAdminBlogPage);
+
+        post(Path.Web.HOME, LoginController.handleLoginPost);
+        post(Path.Web.ADMIN_ADD_BLOG_POST, AdminController.handleAddNewBlogPost);
+
 
         notFound(ViewUtil.notFound);
         internalServerError(ViewUtil.internalServerError);

@@ -36,21 +36,7 @@ public class SelectDatabaseContent implements DatabaseSelector {
         }
     }
 
-    @Override
-    public User getUser() throws DatabaseException {
-        try (Connection connection = DriverManager.getConnection(dbUrl, sqLiteConfig)) {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM " + USER_TALBE);
-            rs.next();
-            String email = rs.getString(USER_COLUMN_EMAIL);
-            String name = rs.getString(USER_COLUMN_NAME);
-            String hashedPassword = rs.getString(USER_COLUMN_HASHED_PASSWORD);
-            return new User(email, name, hashedPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new DatabaseException("database error", e);
-        }
-    }
+
 
     @Override
     public List<BlogPost> getAllBlogPosts() throws DatabaseException {

@@ -9,6 +9,6 @@ import java.util.List;
 public interface DatabaseSelector {
 
     Admin getAdmin() throws DatabaseException ;
-    User getUser() throws DatabaseException;
+
     List<BlogPost> getAllBlogPosts() throws DatabaseException;
 }

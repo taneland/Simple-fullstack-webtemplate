@@ -1,5 +1,8 @@
 package admin;
 
+import data.BlogPost;
+import database.Database;
+import database.DatabaseHandler;
 import role.LoggedInRole;
 import spark.Request;
 import spark.Response;
@@ -30,4 +33,44 @@ public class AdminController {
             return null;
         }
     };
+    public static Route serveAdminBlogPage = (Request request, Response response) -> {
+        if (isAdmin(request)) {
+            Map<String, Object> model = new HashMap<>();
+            model.put("page_title", "Web-Template");
+            model.put("text_title", "Välkommen admin");
+            model.put("home_link", Path.Web.ADMIN_HOME);
+            model.put(ATTR_ROLE, LoggedInRole.ADMIN.getRoleName());
+            model.put(ATTR_NAME, request.session().attribute(ATTR_NAME));
+            return render(model, Path.Template.ADMIN_BLOG);
+        } else {
+            response.redirect(Path.Web.LOGIN);
+            return null;
+        }
+    };
+
+
+    public static Route handleAddNewBlogPost = (Request request, Response response) -> {
+        if (isAdmin(request)) {
+            Database db = DatabaseHandler.getDatabase();
+            String title = getQueryBlogTitle(request);
+            String content = getQueryBlogContent(request);
+            String author = getQueryBlogAuthor(request);
+            db.getInserter().addNewBlogPost(new BlogPost(title, content, author));
+            return serveAdminBlogPage.handle(request, response);
+        }else{
+            response.redirect(Path.Web.ADMIN_HOME);
+            return null;
+        }
+
+    };
+
+    private static String getQueryBlogTitle(Request request) {
+        return request.queryParams("blogTitle");
+    }
+    private static String getQueryBlogContent(Request request) {
+        return request.queryParams("blogContent");
+    }
+    private static String getQueryBlogAuthor(Request request) {
+        return request.queryParams("blogAuthor");
+    }
 }

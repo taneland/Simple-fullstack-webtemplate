@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static auth.Authenticator.authenticateAdmin;
-import static auth.Authenticator.authenticateUser;
+
 import static util.ViewUtil.render;
 
 public class LoginController {
@@ -27,14 +27,9 @@ public class LoginController {
         String password = getQueryPassword(request);
         if (authenticateAdmin(email, password)) {
             setLoginAttributes(request.session(), email, LoggedInRole.ADMIN);
-            response.redirect(Path.Web.ADMIN_HOME);
+            response.redirect(Path.Web.HOME);
             return null;
             
-        }else if(authenticateUser(email, password)){
-            setLoginAttributes(request.session(), email, LoggedInRole.USER);
-            response.redirect(Path.Web.USER_HOME);
-            return null;
-
         }
         else {
             Map<String, Object> model = new HashMap<>();

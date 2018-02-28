@@ -34,26 +34,7 @@ public class Authenticator {
         }
     }
 
-    public static boolean authenticateUser(String email, String password) {
-        User existingUser;
-        try {
-            Database db = DatabaseHandler.getDatabase();
-            existingUser = db.getSelector().getUser();
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-            return false;
-        }
-        if (!existingUser.getEmail().equals(email)) {
-            return false;
-        }
 
-        try {
-            return validatePassword(password.toCharArray(), existingUser.getHashedPassword());
-        } catch (InvalidKeySpecException |NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
 
 }

@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static login.LoginController.isAdmin;
 import static login.LoginController.isLoggedIn;
 import static util.RedirectUtil.redirectToRoleHome;
 import static util.ViewUtil.render;
