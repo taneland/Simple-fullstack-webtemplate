@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="\css\style.css">
+    <link rel="stylesheet" href="\css\bulma_custom.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script src="\js\main.js"></script>
+    <script src="\js\vue.min.js"></script>
+</head>
+<body>
+
+<th:block th:fragment="index">
+    <div>
+    <div class="pimg1">
+        <div class="ptext">
+          <span class="border">
+              Learning Web
+          </span>
+        </div>
+    </div>
+
+    <section class="section section-light">
+
+        <h1 class="title">Currently Learning</h1>
+        <p class="is-size-4 is-text-underline">
+            I'll be adding projects and experiments as they are built, currently using:
+        </p>
+        <div class="columns">
+            <div class="column">
+                <section>
+                    <div class="card">
+                        <div class="car-image">
+                            <figure class="image is-4by3">
+                                <a href="https://bulma.io/">
+                                    <img src="/res/bulma-banner.png" alt="Placeholder image">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="column">
+                <section>
+                    <div class="card">
+                        <div class="car-image">
+                            <figure class="image is-4by3">
+                                <a href="https://vuejs.org/">
+                                    <img src="/res/jQuery-banner.jpg" alt="Placeholder image">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="column">
+                <section>
+                    <div class="card">
+                        <div class="car-image">
+                            <figure class="image is-4by3">
+                                <a href="http://www.thymeleaf.org/">
+                                    <img src="/res/thymeleaf-banner.png" alt="Placeholder image">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+        </main>
+    </section>
+    <div class="pimg2">
+        <div class="ptext">
+          <span class="border trans ">
+            <div class="textleft">Future Plans?</div>
+
+          </span>
+        </div>
+    </div>
+    <section class="section section-dark">
+
+        <div class="columns">
+            <div class="column">
+                <section>
+                    <div class="card">
+                        <div class="car-image">
+                            <figure class="image is-4by3">
+                                <a href="https://angularjs.org/">
+                                    <img src="/res/angular-banner.png" alt="Placeholder image">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="column">
+                <section>
+                    <div class="card">
+                        <div class="car-image">
+                            <figure class="image is-4by3">
+                                <a href="https://vuejs.org/">
+                                    <img src="/res/vue-banner.png" alt="Placeholder image">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="column">
+                <section>
+                    <div class="card">
+                        <div class="car-image">
+                            <figure class="image is-4by3">
+                                <a href="https://reactjs.org/">
+                                    <img src="/res/react-banner.png" alt="Placeholder image">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+
+
+    </section>
+    <div class="pimg3">
+        <div class="ptextleft">
+          <span class="border trans tdark">
+            View the code for this site on <a class="fa-underline" href="https://github.com/taneland"><u>Github</u></a>
+
+          </span>
+        </div>
+    </div>
+    <section class="section section-dark">
+
+        <h2>Section One</h2>
+        <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </section>
+
+        <div th:replace="logged_out/fragments/login_form :: login_form"></div>
+    </div>
+    <footer th:replace="common_fragments/footer :: footer"></footer>
+</th:block>
+
+</body>
+</html>

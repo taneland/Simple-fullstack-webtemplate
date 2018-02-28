@@ -1,5 +1,6 @@
 package main;
 
+
 import admin.AdminController;
 import blog.BlogController;
 import contact.ContactController;
@@ -33,9 +34,10 @@ public class Main {
         get(Path.Web.BLOG, BlogController.serveBlogPage);
         get(Path.Web.ADMIN_HOME, AdminController.serveAdminHomePage);
         get(Path.Web.ADMIN_BLOG, AdminController.serveAdminBlogPage);
-
         post(Path.Web.HOME, LoginController.handleLoginPost);
+        post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
         post(Path.Web.ADMIN_ADD_BLOG_POST, AdminController.handleAddNewBlogPost);
+
 
 
         notFound(ViewUtil.notFound);

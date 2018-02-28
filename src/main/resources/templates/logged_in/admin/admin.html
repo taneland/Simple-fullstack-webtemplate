@@ -11,53 +11,37 @@
 </head>
 <body>
 
-<nav class="navbar is-fixed-top" id="navbar">
-    <div class="container">
-        <div class="navbar-brand">
-            <a href="/" class="navbar-item">
-                <img  src="/res/templogo.png" alt="Logo">
-            </a>
+<nav th:replace="logged_in/admin/fragments/navbar :: nav"></nav>
+<main>
+    <div th:replace="common_fragments/index :: index"></div>
+</main>
+<script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
 
-            <span class="navbar-burger burger" data-target="navbarMenuHeroA">
-               <span></span>
-               <span></span>
-               <span></span>
-             </span>
-        </div>
-        <div id="navbarMenuHeroA" class="navbar-menu">
-            <div class="navbar-end">
-                <a  href="#" class="navbar-item is-active">
-                    Home
-                </a>
-                <a href="#" class="navbar-item">
-                    Experiments
-                </a>
-                <a href="./blog" class="navbar-item">
-                    Blog
-                </a>
-                <a href="https://github.com/taneland"  class="navbar-item">
-                   <span class="icon">
-                     <i class="fab fa-github"></i>
-                   </span>
-                </a>
-                <a href="https://www.linkedin.com/in/fredrik-t%C3%A5neland-19b05b150/" class="navbar-item">
-                     <span class="icon">
-                       <i class="fab fa-linkedin"></i>
-                     </span>
-                </a>
-                <span class="navbar-item">
-                <a class="button " id="loginButton">
-                  <span class="icon">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                  </span>
-                  <span>Log Out</span>
-                </a>
-              </span>
 
-            </div>
-        </div>
-    </div>
-</nav>
+    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+
+    if ($navbarBurgers.length > 0) {
+
+
+      $navbarBurgers.forEach(function ($el) {
+        $el.addEventListener('click', function () {
+
+
+          var target = $el.dataset.target;
+          var $target = document.getElementById(target);
+
+
+          $el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+    });
+</script>
 
 </body>
 </html>

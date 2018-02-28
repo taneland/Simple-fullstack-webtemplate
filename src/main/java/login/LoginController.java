@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static auth.Authenticator.authenticateAdmin;
 
+
 import static util.ViewUtil.render;
 
 public class LoginController {
@@ -46,7 +47,7 @@ public class LoginController {
         if (isLoggedIn(request)) {
             request.session().removeAttribute(ATTR_ROLE);
             request.session().removeAttribute(ATTR_NAME);
-            response.redirect(Path.Web.LOGIN);
+            response.redirect(Path.Web.HOME);
             return null;
         }
         response.redirect(Path.Web.HOME);

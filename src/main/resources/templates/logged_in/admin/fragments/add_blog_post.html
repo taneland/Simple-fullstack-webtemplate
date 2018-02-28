@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue Test</title>
+
+    <link rel="stylesheet" href="\css\simple.css">
+    <link rel="stylesheet" href="\css\bulma_custom.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script src="./javascript/vue.js"></script>
+</head>
+
+
+<body>
+<th:block th:fragment="add_blog_post">
+    <div class="modal" id="myModal">
+
+        <div class="modal-background" id="modalBg"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Add new blog post</p>
+                <button id="mySpan" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div id="add-blog" >
+                    <div class="box">
+
+                        <form action="/add-blog-post/" method="post">
+                            <div class="field">
+                                <label class="label">Blog Title</label>
+                                <p class="control">
+                                    <input name="blogTitle" class="input is-medium" v-model.lazy="blog.title" type="text" required>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Blog Text</label>
+                                <p class="control has-icons-left">
+                                    <textarea name="blogContent" v-model.lazy="blog.content" class="textarea" required></textarea>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    <strong>Authors:</strong>
+                                </label>
+                                <div class="select">
+                                    <select name="blogAuthor" v-model="blog.author" required>
+                                        <option v-for="author in authors">{{author}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <button type="submit" class="button is-large">
+                                        Post
+                                    </button>
+                                </p>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <footer class="modal-card-foot">
+
+                    </footer>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</th:block>
+</body>
+</html>
