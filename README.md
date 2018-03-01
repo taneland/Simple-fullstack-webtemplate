@@ -1,4 +1,4 @@
-# <--Under Development-->
+# Personal project In Progress
 
 ## web template - Simple web template with basic front- and back-end
 
