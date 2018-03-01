@@ -32,7 +32,8 @@
                 <article class="message" >
                     <div class="message-header">
                         <p class="is-pulled-left">[[${blog_post.title}]]</p>
-                        By: [[${blog_post.author}]]
+
+                        <button id="closeButton" class="delete" aria-label="delete"></button>
 
                     </div>
                     <div class="message-body ">
@@ -67,6 +68,17 @@ el:'#add-blog',
 })
 
 </script>
+
+<script>
+    var button = document.getElementById("closeButton");
+    var message = document.getElementById('myMessage');
+
+    button.onclick = function() {
+      modal.className = "modal"
+   }
+</script>
+
+
 
 <script>
         var modal = document.getElementById('myModal');

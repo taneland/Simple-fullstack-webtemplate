@@ -9,7 +9,7 @@ public class Path {
         public static final String EXPERIMENTS ="/experiments/";
         public static final String LOGIN = "/login/";
         public static final String LOGOUT = "/logout/";
-        public static final String ADMIN_ADD_BLOG_POST = "/admin/add-blog-post/";
+        public static final String ADMIN_ADD_BLOG_POST = "/add-blog-post/";
         public static final String ADMIN_HOME = "/admin/";
         public static final String ADMIN_BLOG = "/admin/blog/";
 
