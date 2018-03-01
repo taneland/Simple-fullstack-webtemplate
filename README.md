@@ -2,7 +2,7 @@
 
 ## web template - Simple web template with basic front- and back-end
 
-
+![demo](screenshots/web-temp.gif)
 
 ### Includes:
 * Simple Parallax effect
