@@ -1,8 +1,8 @@
 # Personal project In Progress
 
 ## web template - Simple web template
-## Java backend with spark java and thymeleaf
-## Bulma and Vue js frontend
+* Java backend with spark java and thymeleaf
+* Bulma and Vue js frontend
 
 ![demo](screenshots/web-temp.gif)
 
