@@ -10,6 +10,7 @@ import spark.Route;
 import util.Path;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static login.LoginController.ATTR_NAME;
@@ -39,6 +40,9 @@ public class AdminController {
             model.put("page_title", "Web-Template");
             model.put("text_title", "Välkommen admin");
             model.put("home_link", Path.Web.ADMIN_HOME);
+            Database db = DatabaseHandler.getDatabase();
+            List<BlogPost> blogPosts = db.getSelector().getAllBlogPosts();
+            model.put("all_blog_posts", blogPosts);
             model.put(ATTR_ROLE, LoggedInRole.ADMIN.getRoleName());
             model.put(ATTR_NAME, request.session().attribute(ATTR_NAME));
             return render(model, Path.Template.ADMIN_BLOG);

@@ -4,6 +4,7 @@ package main;
 import admin.AdminController;
 import blog.BlogController;
 import contact.ContactController;
+import experiments.ExperimentsController;
 import index.IndexController;
 import login.LoginController;
 import util.Filters;
@@ -34,6 +35,8 @@ public class Main {
         get(Path.Web.BLOG, BlogController.serveBlogPage);
         get(Path.Web.ADMIN_HOME, AdminController.serveAdminHomePage);
         get(Path.Web.ADMIN_BLOG, AdminController.serveAdminBlogPage);
+        get(Path.Web.EXPERIMENTS, ExperimentsController.serveExperimentsPage);
+
         post(Path.Web.HOME, LoginController.handleLoginPost);
         post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
         post(Path.Web.ADMIN_ADD_BLOG_POST, AdminController.handleAddNewBlogPost);

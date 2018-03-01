@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="\css\style.css">
+    <link rel="stylesheet" href="\css\bulma_custom.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script src="\js\main.js"></script>
+    <script src="\js\vue.min.js"></script>
+</head>
+<body>
+
+
+<nav th:replace="logged_out/fragments/navbar :: nav"></nav>
+<main>
+     <div th:replace="common_fragments/experiments :: experiments"></div>
+</main>
+<footer th:replace="common_fragments/footer :: footer"></footer>
+<script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+
+    if ($navbarBurgers.length > 0) {
+
+
+      $navbarBurgers.forEach(function ($el) {
+        $el.addEventListener('click', function () {
+
+
+          var target = $el.dataset.target;
+          var $target = document.getElementById(target);
+
+
+          $el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+    });
+</script>
+<script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("loginButton");
+        var span = document.getElementById("mySpan");
+        var bg = document.getElementById("modalBg");
+
+  btn.onclick = function() {
+      modal.className = "modal is-active"
+  }
+
+  span.onclick = function() {
+      modal.className = "modal"
+  }
+
+
+  bg.onclick = function(event) {
+
+          modal.className = "modal"
+
+  }
+  </script>
+
+
+</body>
+</html>
