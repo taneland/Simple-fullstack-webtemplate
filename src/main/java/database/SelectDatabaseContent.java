@@ -44,6 +44,7 @@ public class SelectDatabaseContent implements DatabaseSelector {
             List<BlogPost> allBlogPosts = new ArrayList<>();
             Statement statement = connection.createStatement();
             String sql = "SELECT "
+                    + BLOGPOST_COLUMN_ID + ","
                     + BLOGPOST_COLUMN_TITLE + ","
                     + BLOGPOST_COLUMN_CONTENT + ","
                     + BLOGPOST_COLUMN_AUTHOR
@@ -52,6 +53,7 @@ public class SelectDatabaseContent implements DatabaseSelector {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 allBlogPosts.add(new BlogPost(
+                        rs.getInt(BLOGPOST_COLUMN_ID),
                         rs.getString(BLOGPOST_COLUMN_TITLE),
                         rs.getString(BLOGPOST_COLUMN_CONTENT),
                         rs.getString(BLOGPOST_COLUMN_AUTHOR)

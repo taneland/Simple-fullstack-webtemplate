@@ -35,11 +35,14 @@ public class Main {
         get(Path.Web.BLOG, BlogController.serveBlogPage);
         get(Path.Web.ADMIN_HOME, AdminController.serveAdminHomePage);
         get(Path.Web.ADMIN_BLOG, AdminController.serveAdminBlogPage);
+        get(Path.Web.ADMIN_EXPERIMENTS, AdminController.serveAdminExperimentsPage);
         get(Path.Web.EXPERIMENTS, ExperimentsController.serveExperimentsPage);
+
 
         post(Path.Web.HOME, LoginController.handleLoginPost);
         post(Path.Web.LOGOUT, LoginController.handleLogoutPost);
         post(Path.Web.ADMIN_ADD_BLOG_POST, AdminController.handleAddNewBlogPost);
+        post(Path.Web.ADMIN_DELETE_BLOG_POST, AdminController.handleDeleteBlogPost);
 
 
 

@@ -9,6 +9,9 @@
     <script src="\js\main.js"></script>
     <script src="\js\jquery.min.js"></script>
     <script src="\js\vue.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/buefy/lib/buefy.min.css">
+
+    <script src="https://unpkg.com/buefy"></script>
 </head>
 
 <nav th:replace="logged_in/admin/fragments/navbar :: nav"></nav>
@@ -21,9 +24,6 @@
 </section>
 
 
-
-
-
 <section class="section ">
 
     <th:block th:each="blog_post : ${all_blog_posts}">
@@ -32,9 +32,9 @@
                 <article class="message" >
                     <div class="message-header">
                         <p class="is-pulled-left">[[${blog_post.title}]]</p>
-
-                        <button id="closeButton" class="delete" aria-label="delete"></button>
-
+                        <form action="/delete-blog-post/" method="post">
+                            <button th:value="${blog_post.id}" name="blogId " type="submit" class=" delete" aria-label="delete"></button>
+                        </form>
                     </div>
                     <div class="message-body ">
                         [[${blog_post.content}]]
@@ -44,6 +44,7 @@
         </div>
     </th:block>
 </section>
+
 
     <div th:replace="logged_in/admin/fragments/add_blog_post :: add_blog_post"></div>
 </main>
@@ -68,6 +69,10 @@ el:'#add-blog',
 })
 
 </script>
+
+
+
+
 
 <script>
     var button = document.getElementById("closeButton");

@@ -51,6 +51,21 @@ public class AdminController {
             return null;
         }
     };
+    public static Route serveAdminExperimentsPage = (Request request, Response response) -> {
+        if (isAdmin(request)) {
+            Map<String, Object> model = new HashMap<>();
+            model.put("page_title", "Web-Template");
+            model.put("text_title", "Välkommen admin");
+            model.put("home_link", Path.Web.ADMIN_HOME);
+
+            model.put(ATTR_ROLE, LoggedInRole.ADMIN.getRoleName());
+            model.put(ATTR_NAME, request.session().attribute(ATTR_NAME));
+            return render(model, Path.Template.ADMIN_EXPERIMENTS);
+        } else {
+            response.redirect(Path.Web.LOGIN);
+            return null;
+        }
+    };
 
 
     public static Route handleAddNewBlogPost = (Request request, Response response) -> {
@@ -60,6 +75,18 @@ public class AdminController {
             String content = getQueryBlogContent(request);
             String author = getQueryBlogAuthor(request);
             db.getInserter().addNewBlogPost(new BlogPost(title, content, author));
+            return serveAdminBlogPage.handle(request, response);
+        }else{
+            response.redirect(Path.Web.ADMIN_HOME);
+            return null;
+        }
+
+    };
+    public static Route handleDeleteBlogPost = (Request request, Response response) -> {
+        if (isAdmin(request)) {
+            Database db = DatabaseHandler.getDatabase();
+            String id = getQueryBlogId(request);
+            db.getDeleter().deleteBlogPost(Integer.valueOf(id));
             return serveAdminBlogPage.handle(request, response);
         }else{
             response.redirect(Path.Web.ADMIN_HOME);
@@ -77,4 +104,8 @@ public class AdminController {
     private static String getQueryBlogAuthor(Request request) {
         return request.queryParams("blogAuthor");
     }
+    private static String getQueryBlogId(Request request) {
+        return request.queryParams("blogId");
+    }
+
 }
